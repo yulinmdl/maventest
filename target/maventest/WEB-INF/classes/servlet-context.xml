@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/mvc"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:util="http://www.springframework.org/schema/util"	
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd">
+	
+	
+	<!--使用默认的Servlet来响应静态文件 ( 对静态资源文件的访问) -->
+	<mvc:default-servlet-handler/>
+	<!-- spring mvc自动扫描注解的bean -->
+	<context:component-scan base-package="com.mdl.maven.action" />
+	<context:component-scan base-package="com.mdl.maven.service" />
+	<context:component-scan base-package="com.mdl.maven.dao" />
+	<!-- Spring定时器注解开关-->  
+    <task:scheduler id="myScheduler" pool-size="10"/>  
+	<context:component-scan base-package="com.mdl.maven.task" />
+
+	<!-- 默认的注解映射的支持,请求映射到具体的Action中的方法-->
+	<annotation-driven />
+
+	<!-- 用来进行静态资源的访问,为了引用资源的访问不会类似CONTROLLER一样被拦截 -->
+	<resources mapping="/resources/**" location="/resources/" />
+
+	<!-- 视图解释类(配置返回请求的前缀和后缀 等)-->
+	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<beans:property name="prefix" value="/WEB-INF/jsp/" />
+		<beans:property name="suffix" value=".jsp" />
+		<beans:property name="cache" value="true" />
+		<beans:property name="contentType" value="text/html;charset=UTF-8" />
+	</beans:bean>
+	
+
+	<!-- 文件上传 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
+
+	<!-- Imports user-defined @Controller beans that process client requests -->
+	<beans:import resource="controllers.xml" />
+
+	<task:annotation-driven />
+	
+</beans:beans>

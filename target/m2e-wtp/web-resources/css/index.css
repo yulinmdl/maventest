@@ -1,0 +1,15 @@
+/**{border: solid 1px red;}*/
+
+/*页面头部*/
+header{height: 100px;background: #ABCDEF;}
+nav{height:30px;background: #FF9900;margin-top: 50px;}
+nav ul li{width:100px;height:30px;float: left;line-height: 30px;}
+
+/*页面中间div*/
+div{height: 1500px;margin-top: 10px;}
+section{height: 1500px;background: #DDDDDD;width: 70%;float: left;}
+aside{height: 1500px;background: #DDaDDD;width: 29%;float: right;}
+article{background:#FF9900;width: 500px;margin: 0 auto;text-align: center;}
+
+/*页面底部*/
+footer{height:100px;background: #ABCDEF;clear: both;margin-top: 10px;}
