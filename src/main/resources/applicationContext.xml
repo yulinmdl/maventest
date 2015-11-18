@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="GBK"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xmlns:aop="http://www.springframework.org/schema/aop"
+		xmlns:tx="http://www.springframework.org/schema/tx"
+		xmlns:context="http://www.springframework.org/schema/context"
+		xmlns:util="http://www.springframework.org/schema/util"
+		xmlns:c="http://www.springframework.org/schema/c"
+		xmlns:p="http://www.springframework.org/schema/p"		
+		xsi:schemaLocation="
+			http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+			 http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+			http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+			http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+	        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd 
+	        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+
+	<!-- spring添加注解识别 -->
+	<context:annotation-config  proxy-target-class="true" />
+	<!-- springAOP注解识别 -->
+    <aop:aspectj-autoproxy proxy-target-class="true" />
+    <!-- 扫描根目录properties文件 -->
+	<context:property-placeholder location="classpath*:*.properties"/>
+	
+	<!-- 拦截器_csrf防御 -->
+	<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
+		<constructor-arg>
+			<bean class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"/>
+		</constructor-arg>
+	</bean>
+	<bean id="requestDataValueProcessor" class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor"/>	
+
+	<!-- 连接池 -->
+	<bean id="abstractDataSource" abstract="true" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
+       <property name="driverClass" value="${jdbc.driverClass}" />
+       <property name="user" value="${jdbc.user}" />
+       <property name="password" value="${jdbc.password}" />
+       <property name="minPoolSize" value="${jdbc.minPoolSize}" />
+       <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
+       <property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
+       <property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
+       <property name="maxStatements" value="${jdbc.maxStatements}" />
+       <property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
+       <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
+       <property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}" />
+       <property name="breakAfterAcquireFailure" value="${jdbc.breakAfterAcquireFailure}" />
+       <property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}" />
+    </bean>
+    
+    <!-- 配置数据源 -->
+	<bean id="dataSource" parent="abstractDataSource">
+		<property name="user" value="${jdbc.user}" />
+       	<property name="password" value="${jdbc.password}" />
+        <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/mssm?useUnicode=true&amp;characterEncoding=utf8" />
+	</bean>
+	
+
+	<!-- javaBeans -->
+	<bean id="userInfo" class="com.mdl.maven.model.UserInfo" >
+		<property name="uid" value="1" />
+		<property name="uname" value="Jack" />
+		<property name="unumber" value="30" />
+	</bean>
+	
+	<!-- mybatis -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+	</bean>	
+	<!-- mybatis接口目录配置 -->
+	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="com.mdl.maven.dao" />
+	</bean>
+</beans>
