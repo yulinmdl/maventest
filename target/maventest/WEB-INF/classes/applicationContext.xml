@@ -15,14 +15,14 @@
 	        http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd 
 	        http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
 
-	<!-- springÌí¼Ó×¢½âÊ¶±ð -->
+	<!-- springï¿½ï¿½ï¿½×¢ï¿½ï¿½Ê¶ï¿½ï¿½ -->
 	<context:annotation-config  proxy-target-class="true" />
-	<!-- springAOP×¢½âÊ¶±ð -->
+	<!-- springAOP×¢ï¿½ï¿½Ê¶ï¿½ï¿½ -->
     <aop:aspectj-autoproxy proxy-target-class="true" />
-    <!-- É¨Ãè¸ùÄ¿Â¼propertiesÎÄ¼þ -->
+    <!-- É¨ï¿½ï¿½ï¿½Ä¿Â¼propertiesï¿½Ä¼ï¿½ -->
 	<context:property-placeholder location="classpath*:*.properties"/>
 	
-	<!-- À¹½ØÆ÷_csrf·ÀÓù -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½_csrfï¿½ï¿½ï¿½ï¿½ -->
 	<bean id="csrfFilter" class="org.springframework.security.web.csrf.CsrfFilter">
 		<constructor-arg>
 			<bean class="org.springframework.security.web.csrf.HttpSessionCsrfTokenRepository"/>
@@ -30,27 +30,27 @@
 	</bean>
 	<bean id="requestDataValueProcessor" class="org.springframework.security.web.servlet.support.csrf.CsrfRequestDataValueProcessor"/>	
 
-	<!-- Á¬½Ó³Ø -->
+	<!-- ï¿½ï¿½ï¿½Ó³ï¿½ -->
 	<bean id="abstractDataSource" abstract="true" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
-       <property name="driverClass" value="${jdbc.driverClass}" />
-       <property name="user" value="${jdbc.user}" />
-       <property name="password" value="${jdbc.password}" />
-       <property name="minPoolSize" value="${jdbc.minPoolSize}" />
-       <property name="maxPoolSize" value="${jdbc.maxPoolSize}" />
-       <property name="maxIdleTime" value="${jdbc.maxIdleTime}" />
-       <property name="acquireIncrement" value="${jdbc.acquireIncrement}" />
-       <property name="maxStatements" value="${jdbc.maxStatements}" />
-       <property name="initialPoolSize" value="${jdbc.initialPoolSize}" />
-       <property name="idleConnectionTestPeriod" value="${jdbc.idleConnectionTestPeriod}" />
-       <property name="acquireRetryAttempts" value="${jdbc.acquireRetryAttempts}" />
-       <property name="breakAfterAcquireFailure" value="${jdbc.breakAfterAcquireFailure}" />
-       <property name="testConnectionOnCheckout" value="${jdbc.testConnectionOnCheckout}" />
+       <property name="driverClass" value="com.mysql.jdbc.Driver" />
+       <property name="user" value="btc_user" />
+       <property name="password" value="ikongjian*()" />
+       <property name="minPoolSize" value="10" />
+       <property name="maxPoolSize" value="100" />
+       <property name="maxIdleTime" value="1800" />
+       <property name="acquireIncrement" value="5" />
+       <property name="maxStatements" value="10" />
+       <property name="initialPoolSize" value="2" />
+       <property name="idleConnectionTestPeriod" value="1800" />
+       <property name="acquireRetryAttempts" value="30" />
+       <property name="breakAfterAcquireFailure" value="true" />
+       <property name="testConnectionOnCheckout" value="false" />
     </bean>
     
-    <!-- ÅäÖÃÊý¾ÝÔ´ -->
+    <!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´ -->
 	<bean id="dataSource" parent="abstractDataSource">
-		<property name="user" value="${jdbc.user}" />
-       	<property name="password" value="${jdbc.password}" />
+		<property name="user" value="btc_user" />
+       	<property name="password" value="ikongjian*()" />
         <property name="jdbcUrl" value="jdbc:mysql://127.0.0.1:3306/mssm?useUnicode=true&amp;characterEncoding=utf8" />
 	</bean>
 	
@@ -66,7 +66,7 @@
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 	</bean>	
-	<!-- mybatis½Ó¿ÚÄ¿Â¼ÅäÖÃ -->
+	<!-- mybatisï¿½Ó¿ï¿½Ä¿Â¼ï¿½ï¿½ï¿½ï¿½ -->
 	<bean id="mapperScannerConfigurer" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 		<property name="basePackage" value="com.mdl.maven.dao" />
 	</bean>

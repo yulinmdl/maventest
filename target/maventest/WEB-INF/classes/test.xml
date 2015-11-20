@@ -196,7 +196,7 @@
 		<resources>
 			<!--这个元素描述了项目相关或测试相关的所有资源路径 -->
 			<resource>
-				<!--描述了资源的目标路径。该路径相对target/classes目录（例如${project.build.outputDirectory}）。举个例子，如果你想资源在特定的包里(org.apache.maven.messages)，你就必须该元素设置为org/apache/maven/messages。然而，如果你只是想把资源放到源码目录结构里，就不需要该配置。 -->
+				<!--描述了资源的目标路径。该路径相对target/classes目录（例如D:\\Workspaces\\Eclipse\\maventest\\target\\classes）。举个例子，如果你想资源在特定的包里(org.apache.maven.messages)，你就必须该元素设置为org/apache/maven/messages。然而，如果你只是想把资源放到源码目录结构里，就不需要该配置。 -->
 				<targetPath />
 				<!--是否使用参数值代替参数名。参数值取自properties元素或者文件里配置的属性，文件在filters元素里列出。 -->
 				<filtering />
@@ -221,7 +221,7 @@
 		</testResources>
 		<!--构建产生的所有文件存放的目录 -->
 		<directory />
-		<!--产生的构件的文件名，默认值是${artifactId}-${version}。 -->
+		<!--产生的构件的文件名，默认值是maventest-0.0.1-SNAPSHOT。 -->
 		<finalName />
 		<!--当filtering开关打开时，使用到的过滤器属性文件列表 -->
 		<filters />
@@ -547,7 +547,7 @@
 				- runtime: 在执行时需要使用 - test: 用于test任务时使用 - system: 需要外在提供相应的元素。通过systemPath来取得 
 				- systemPath: 仅用于范围为system。提供相应的路径 - optional: 当项目自身被依赖时，标注依赖是否传递。用于连续依赖时使用 -->
 			<scope>test</scope>
-			<!--仅供system范围使用。注意，不鼓励使用这个元素，并且在新的版本中该元素可能被覆盖掉。该元素为依赖规定了文件系统上的路径。需要绝对路径而不是相对路径。推荐使用属性匹配绝对路径，例如${java.home}。 -->
+			<!--仅供system范围使用。注意，不鼓励使用这个元素，并且在新的版本中该元素可能被覆盖掉。该元素为依赖规定了文件系统上的路径。需要绝对路径而不是相对路径。推荐使用属性匹配绝对路径，例如C:\\Java\\jdk1.7.0_79\\jre。 -->
 			<systemPath></systemPath>
 			<!--当计算传递依赖时， 从依赖构件列表里，列出被排除的依赖构件集。即告诉maven你只依赖指定的项目，不依赖项目的依赖。此元素主要用于解决版本冲突问题 -->
 			<exclusions>
@@ -566,7 +566,7 @@
 	<reporting>
 		<!--true，则，网站不包括默认的报表。这包括“项目信息”菜单中的报表。 -->
 		<excludeDefaults />
-		<!--所有产生的报表存放到哪里。默认值是${project.build.directory}/site。 -->
+		<!--所有产生的报表存放到哪里。默认值是D:\\Workspaces\\Eclipse\\maventest\\target/site。 -->
 		<outputDirectory />
 		<!--使用的报表插件和他们的配置。 -->
 		<plugins>
@@ -617,7 +617,7 @@
 			<uniqueVersion />
 			<id>banseon-maven2</id>
 			<name>banseon maven2</name>
-			<url>file://${basedir}/target/deploy</url>
+			<url>file://D:\\Workspaces\\Eclipse\\maventest/target/deploy</url>
 			<layout />
 		</repository>
 		<!--构件的快照部署到哪里？如果没有配置该元素，默认部署到repository元素配置的仓库，参见distributionManagement/repository元素 -->
