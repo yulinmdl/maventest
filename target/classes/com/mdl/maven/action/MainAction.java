@@ -12,18 +12,13 @@ import com.mdl.maven.model.UserInfo;
 import com.mdl.maven.service.UserInfoService;
 
 @Controller
-@RequestMapping("/main")
 public class MainAction {
 
 	@Resource
 	private UserInfoService userInfoService;
 	
 	@RequestMapping("/index")
-	public String index(Model model,int uid) {
-		System.out.println("----------------index.....");
-		UserInfo userInfo=userInfoService.getUser(uid);
-		model.addAttribute("userInfo", userInfo);
-		System.out.println(userInfo.getUname());
+	public String index(Model model) {
 		return "index";
 	}
 
