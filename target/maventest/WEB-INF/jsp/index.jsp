@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="../../assets/AdminLTE-2.3.0/dist/css/AdminLTE.css">
     <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
-    <link rel="stylesheet" href="../../assets/AdminLTE-2.3.0/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="../../assets/AdminLTE-2.3.0/dist/css/skins/_all-skins.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -322,9 +322,9 @@
                 <li>
                   <a href="#"><i class="fa fa-circle-o"></i> Level One <i class="fa fa-angle-left pull-right"></i></a>
                   <ul class="treeview-menu">
-                    <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
+                    <li><a href="#"><i class="fa fa-square-o"></i> Level Two</a></li>
                     <li>
-                      <a href="#"><i class="fa fa-circle-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
+                      <a href="#"><i class="fa fa-square-o"></i> Level Two <i class="fa fa-angle-left pull-right"></i></a>
                       <ul class="treeview-menu">
                         <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
                         <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
